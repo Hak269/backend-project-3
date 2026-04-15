@@ -4,17 +4,15 @@ const flightSchema = new mongoose.Schema({
     airLine:{
         type:String,
         required: true
-    }
-    ,
+    },
     aircraft:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Aircraft"
         
     },
-    from: String,
+    airport: String,
     availableseats:{
         type:Array,
-        min:0
     },
     destination:{
         type:String,
