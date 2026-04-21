@@ -8,7 +8,8 @@ const logger = require('morgan');
 const authRouter = require('./controllers/auth.routes');
 const verifyToken = require('./middleware/verify-token');
 const bookingRouter = require('./controllers/booking.routes')
-
+const aircraftRouter = require('./controllers/aircraft.routes')
+const flightRouter = require('./controllers/flight.routes')
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -23,6 +24,8 @@ app.use(logger('dev'));
 // Routes go here
 app.use('/auth', authRouter);
 app.use('/bookings',bookingRouter);
+app.use('/aircrafts', aircraftRouter);
+app.use('/flights', flightRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');

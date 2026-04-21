@@ -32,10 +32,10 @@ router.get("/:id",async(req,res)=>{
     }
 })
 
-router.get("/:id/delete",async (req,res) => {
+router.delete("/:id",async (req,res) => {
     try {
         const deletedFlight = await Flight.findByIdAndDelete(req.params.id);
-        res.status(200).json(`Deleted Flight model: ${deletedFlight.model}`)
+        res.status(200).json(`Deleted Flight: ${deletedFlight.airLine} to ${deletedFlight.destination}`);
 
     } catch (err) {
         console.log("Error deleting Flight:", err)

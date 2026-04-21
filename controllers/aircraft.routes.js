@@ -4,7 +4,7 @@ const Aircraft = require("../models/Aircraft")
 router.post("/create", async (req,res) => {
     try {
         const createdAircraft = await Aircraft.create(req.body)
-        res.status(201).json(createdFlight)
+        res.status(201).json(createdAircraft)
     } catch (err) {
         console.log("Error create Aircraft:", err)
         res.status(500).json({ err: "Failed to create Aircraft" })
@@ -32,7 +32,7 @@ router.get("/:id",async(req,res)=>{
     }
 })
 
-router.get("/:id/delete",async (req,res) => {
+router.delete("/:id/delete",async (req,res) => {
     try {
         const deletedAircraft = await Aircraft.findByIdAndDelete(req.params.id);
         res.status(200).json(`Deleted Aircraft model: ${deletedAircraft.model}`)
