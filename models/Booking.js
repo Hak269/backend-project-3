@@ -21,6 +21,11 @@ const bookingSchema = new mongoose.Schema({
         required: true,
         enum:['FirstClass','BusinessClass','EconomyClass']
     },
+    price:{
+        type:Number,
+        min:0,
+        required: true
+    },
     bookedBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
