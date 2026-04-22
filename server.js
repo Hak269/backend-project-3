@@ -23,9 +23,10 @@ app.use(express.json());
 app.use(logger('dev'));
 
 // Routes go here
+app.use("/flights",flightRoutes)
+
 app.use('/auth', authRouter);
 app.use('/bookings',bookingRouter);
-app.use("/flights",flightRoutes)
 app.use("/aircraft",aircraftRoutes)
 
 app.listen(3000, () => {
