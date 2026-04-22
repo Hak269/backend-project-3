@@ -25,6 +25,11 @@ router.get("/",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     try {
         const flight = await Flight.findById(req.params.id)
+
+        if (!flight) {
+            return res.status(404).json({ err: "Flight not found" })
+        }
+
         res.status(200).json(flight)
     } catch (err) {
         console.log(err)
@@ -32,9 +37,14 @@ router.get("/:id",async(req,res)=>{
     }
 })
 
-router.get("/:id/delete",async (req,res) => {
+router.delete("/delete/:id",async (req,res) => {
     try {
         const deletedFlight = await Flight.findByIdAndDelete(req.params.id);
+
+        if (!deletedFlight) {
+            return res.status(404).json({ err: "Flight not found" })
+        }
+        
         res.status(200).json(`Deleted Flight model: ${deletedFlight.model}`)
 
     } catch (err) {
@@ -43,9 +53,14 @@ router.get("/:id/delete",async (req,res) => {
     }
 })
 
-router.put("/:id/update", async (req,res) => {
+router.put("/update/:id", async (req,res) => {
     try {
         const updatedFlight = await Flight.findByIdAndUpdate(req.params.id, req.body, { new: true })
+
+        if (!updatedFlight) {
+            return res.status(404).json({ err: "Flight not found" })
+        }
+
         res.status(200).json(updatedFlight)
     } catch (err) {
         console.log("Error updating Flight:", err)
