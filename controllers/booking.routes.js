@@ -6,7 +6,7 @@ const verifyToken = require('../middleware/verify-token');
 
 // Create
 
-router.post('/', verifyToken, async(req,res)=>{
+router.post('/create', verifyToken, async(req,res)=>{
     try{
         console.log(req.user);
         req.body.bookedBy = req.user._id;
